@@ -22,7 +22,7 @@ io.on("connection", (socket) => {
         const { name, room } = msg;
         newRoom.addUser(socket.id, name, room)
 
-        socket.join(room)
+        socket.join(room) //join room thì mới có thể emit với on trong room đó được
 
         io.to(room).emit("serverMsg", generateMessage(
             "Admin",
@@ -71,9 +71,11 @@ io.on("connection", (socket) => {
     })
 })
 
-
-const publicPath = path.join(__dirname + '/../public') //__dirname chứa đường dẫn tuyệt đối thư mực mà file đang chạy
-
+/**
+ * @__dirname chứa đường dẫn tuyệt đối thư mực mà file đang chạy
+ * @path.join nối các đoạn đường dẫn chỉ định thành 1 đường dẫn, xóa dấu ..
+ */
+const publicPath = path.join(__dirname + '/../public')
 app.use('/', express.static(publicPath))
 const port = 3456;
 server.listen(port, () => {
