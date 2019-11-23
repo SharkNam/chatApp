@@ -1,0 +1,68 @@
+<!-- server ket noi or dis voi user thonng qua su kien connect, dis-->
+<!-- tu block den element __ , m: modifi -->
+<!-- ko co export tu nhung file khac vo file main ma phai them vao html vi ko co moi truong, trinh duyet ko hieu require  -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+</head>
+
+<body class="chat">
+    <div class="chat__sidebar">
+        <h3>PEOPLE</h3>
+        <div id="users"></div>
+    </div>
+
+    <div class="chat__main">
+        <ol id="messages" class="chat__messages"></ol>
+
+        <div class="chat__footer">
+            <form id="message-form">
+                <input type="text" name="message" autocomplete="off" autofocus />
+                <button>Send</button>
+                <button type="button" id="send-location">Send location</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.js"
+        integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/mustache.js"></script>
+
+    <script id="message-template" type="text/template">
+      <li class="message">
+        <div class="message__title">
+          <h4>{{from}}</h4>
+          <span>{{createdAt}}</span>
+        </div>
+        <div class="message__body">
+          <p>{{content}}</p>
+        </div>
+      </li>
+    </script>
+
+    <script id="location-template" type="text/template">
+      <li class="message">
+        <div class="message__title">
+          <h4>{{from}}</h4>
+          <span>{{createdAt}}</span>
+        </div>
+        <div class="message__body">
+          <a target="_blank" href={{href}}>My location</a>
+        </div>
+      </li>
+    </script>
+
+    <script src="./js/moment.js"></script>
+    <script src="./js/deparam.js"></script>
+
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
